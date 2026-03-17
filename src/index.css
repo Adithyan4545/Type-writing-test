@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+  
+  * {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .typing-char {
+    @apply relative inline-block transition-all duration-200 ease-in-out;
+  }
+  
+  .typing-char.correct {
+    @apply bg-green-200 text-green-800;
+    animation: correctChar 0.3s ease-out;
+  }
+  
+  .typing-char.incorrect {
+    @apply bg-red-200 text-red-800;
+    animation: incorrectChar 0.3s ease-out, shake 0.5s ease-in-out;
+  }
+  
+  .typing-char.current {
+    @apply bg-blue-200;
+    animation: currentChar 1s ease-in-out infinite;
+  }
+  
+  .dark .typing-char {
+    @apply text-gray-200;
+  }
+  
+  .dark .typing-char.correct {
+    @apply bg-green-700 text-green-200;
+  }
+  
+  .dark .typing-char.incorrect {
+    @apply bg-red-700 text-red-200;
+  }
+  
+  .dark .typing-char.current {
+    @apply bg-blue-700 text-blue-200;
+  }
+  
+  .typing-caret {
+    @apply absolute top-0 left-0 w-0.5 h-full bg-blue-600;
+    animation: blink 1s ease-in-out infinite;
+  }
+  
+  .keyboard-key {
+    @apply bg-white border border-gray-300 rounded shadow-sm text-center font-mono text-sm;
+    @apply hover:bg-gray-50 transition-all duration-150 transform;
+  }
+  
+  .keyboard-key:hover {
+    @apply scale-105 shadow-md;
+  }
+  
+  .keyboard-key.active {
+    @apply bg-blue-500 text-white border-blue-600 shadow-lg;
+    animation: keyPress 0.6s ease-in-out infinite;
+  }
+  
+  .keyboard-key.finger-1 { @apply bg-pink-200 hover:bg-pink-300 text-pink-800; }
+  .keyboard-key.finger-2 { @apply bg-yellow-200 hover:bg-yellow-300 text-yellow-800; }
+  .keyboard-key.finger-3 { @apply bg-green-200 hover:bg-green-300 text-green-800; }
+  .keyboard-key.finger-4 { @apply bg-blue-200 hover:bg-blue-300 text-blue-800; }
+  
+  .dark .keyboard-key.finger-1 { @apply bg-pink-600 hover:bg-pink-500 text-white; }
+  .dark .keyboard-key.finger-2 { @apply bg-yellow-600 hover:bg-yellow-500 text-white; }
+  .dark .keyboard-key.finger-3 { @apply bg-green-600 hover:bg-green-500 text-white; }
+  .dark .keyboard-key.finger-4 { @apply bg-blue-600 hover:bg-blue-500 text-white; }
+  .dark .keyboard-key { @apply bg-gray-700 border-gray-600 text-gray-200; }
+  .dark .keyboard-key:hover { @apply bg-gray-600; }
+  
+  .level-card {
+    @apply transform transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  
+  .progress-ring {
+    @apply transform transition-transform duration-500;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes correctChar {
+  0% { transform: scale(1); background-color: rgb(187 247 208); }
+  50% { transform: scale(1.1); background-color: rgb(134 239 172); }
+  100% { transform: scale(1); background-color: rgb(187 247 208); }
+}
+
+@keyframes incorrectChar {
+  0% { transform: scale(1); background-color: rgb(254 202 202); }
+  50% { transform: scale(1.1); background-color: rgb(248 113 113); }
+  100% { transform: scale(1); background-color: rgb(254 202 202); }
+}
+
+@keyframes currentChar {
+  0%, 100% { background-color: rgb(191 219 254); }
+  50% { background-color: rgb(147 197 253); }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes keyPress {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+  50% { transform: scale(1.05); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
