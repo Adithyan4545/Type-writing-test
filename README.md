@@ -1,18 +1,56 @@
-# Typing Coach - Real-time Typing Improvement App
+# Typing Coach - Real-time Typing Improvement App 🚀
 
-A complete, production-ready typing coach web application built with React, Vite, and Tailwind CSS. Provides real-time feedback, adaptive difficulty, and comprehensive analytics to help users improve their typing speed and accuracy.
+[![npm](https://img.shields.io/npm/v/typing-coach?color=orange)](https://www.npmjs.com/package/typing-coach)
+[![React](https://img.shields.io/badge/React-18-blue.svg)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5-green.svg)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3-purple.svg)](https://tailwindcss.com/)
+
+A complete, production-ready typing coach web application built with **React**, **Vite**, and **Tailwind CSS**. Provides real-time feedback, adaptive difficulty, and comprehensive analytics to help users improve their typing speed and accuracy.
+
+## ✨ Features
+
+- **Real-time Typing Feedback**: Live WPM, accuracy, and error highlighting
+- **Adaptive Levels**: Progressive difficulty with 100+ levels (from `src/data/levels.js`)
+- **Visual Keyboard**: Interactive keyboard visualization (`VisualKeyboard.jsx`)
+- **Metrics Dashboard**: Detailed stats and progress tracking (`MetricsPanel.jsx`)
+- **Session History**: Save and review past sessions (`SessionHistory.jsx`, `storage.js`)
+- **Coaching Tips**: Personalized improvement suggestions (`CoachingTips.jsx`)
+- **Level Selector**: Choose custom difficulty (`LevelSelector.jsx`)
+- **Dark/Light Theme**: Toggleable UI themes (`ThemeToggle.jsx`, `Settings.jsx`)
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Local Storage**: Persistent progress without backend
+- **Comprehensive Testing**: Unit tests with Vitest (`src/tests/`)
+
+## 📱 Screenshots
+
+### Typing Interface
+![Typing Area](https://via.placeholder.com/800x400/0f766e/ffffff?text=Real-time+Typing+Interface+with+Visual+Keyboard)
+*(Live WPM, accuracy, error highlights, and visual keyboard)*
+
+### Metrics & History
+![Metrics Panel](https://via.placeholder.com/800x400/1e3a8a/ffffff?text=Metrics+Panel+%26+Session+History)
+*(Detailed stats, graphs, and session summaries)*
+
+### Level Complete
+![Level Complete](https://via.placeholder.com/800x400/f59e0b/000000?text=Level+Complete+with+Rewards)
+*(Celebratory screen with tips and next challenge)*
 
 ## 🚀 Quick Start
 
 ```bash
-# Install dependencies
+# Clone & Install
+git clone <repo-url>
+cd typing-coach
 npm install
 
-# Start development server
+# Start development server (localhost:5173)
 npm run dev
 
 # Build for production
 npm run build
+
+# Preview production build
+npm run preview
 
 # Run tests
 npm test
@@ -21,179 +59,109 @@ npm test
 npm run lint
 ```
 
-Open [http://localhost:5173](http://localhost:5173) to start typing!
+## 🛠️ Installation
 
-## ✨ Features
+1. Ensure Node.js >=18 and npm >=9 are installed
+2. `npm install` - Installs React, TailwindCSS, Vite, Vitest, ESLint
+3. `npm run dev` - Launches hot-reloaded dev server
 
-### Real-time Feedback
-- **Per-keystroke highlighting**: Green for correct, red for mistakes, blue for current position
-- **Live metrics**: WPM, CPM, accuracy percentage, and current streak
-- **Latency tracking**: Measures reaction time between keystrokes with visual heatmap
-- **Animated caret**: Smooth cursor animation following typing progress
+No additional setup required!
 
-### Adaptive Difficulty System
-The app automatically adjusts difficulty based on performance using these thresholds:
+## 🎮 Usage
 
-| Level | WPM Range | Min Accuracy | Content Type |
-|-------|-----------|--------------|--------------|
-| Beginner | 0-20 | 80% | Home row practice, simple words |
-| Words | 15-35 | 85% | Common words, short phrases |
-| Sentences | 25-50 | 90% | Full sentences, punctuation |
-| Code | 35+ | 92% | Programming syntax, symbols |
+1. **Select Level**: Choose beginner/intermediate/advanced from Level Selector
+2. **Configure Settings**: Theme, keyboard layout (`src/data/keyboardLayouts.js`), sample texts (`src/data/sampleTexts.js`)
+3. **Start Typing**: Match the prompt in TypingArea - get instant feedback!
+4. **Track Progress**: View real-time metrics, complete levels, save sessions
+5. **Review & Improve**: Check history, coaching tips, retry failed levels
 
-### Visual Keyboard
-- **Animated overlay**: Shows next key to press with finger hints
-- **Layout support**: QWERTY and Dvorak keyboard layouts
-- **Color-coded fingers**: Visual guide for proper finger placement
-- **Responsive design**: Toggleable on mobile devices
+## 📁 Project Structure
 
-### Gamification & Motivation
-- **XP System**: Earn points based on WPM × accuracy × time
-- **Badges**: Unlock achievements for milestones (Speed Demon, Perfectionist, etc.)
-- **Streak Counter**: Track consecutive correct keystrokes
-- **Progress Ring**: Visual accuracy indicator
-- **Session Goals**: Daily practice targets
-
-### Analytics & Export
-- **Session History**: Last 10 sessions with detailed metrics
-- **Performance Charts**: Mini reaction-time heatmap
-- **CSV Export**: Download session data for external analysis
-- **JSON Import/Export**: Backup and restore all user data
-
-### Accessibility & Customization
-- **Keyboard Navigation**: Full keyboard accessibility with ARIA labels
-- **High Contrast Mode**: Enhanced visibility option
-- **Font Size Control**: Small, medium, large text options
-- **Sound Toggle**: Optional audio feedback
-- **No Signup Required**: All data stored locally
-
-## 🏗️ Architecture
-
-### Component Structure
 ```
-src/
-├── components/
-│   ├── TypingArea.jsx          # Main typing interface with character highlighting
-│   ├── MetricsPanel.jsx        # Live stats display with mini charts
-│   ├── VisualKeyboard.jsx      # Animated keyboard overlay
-│   ├── SessionSummary.jsx      # Post-session results and tips
-│   ├── Settings.jsx            # User preferences modal
-│   └── SessionHistory.jsx      # Historical data table
-├── hooks/
-│   └── useTypingEngine.js      # Core typing logic and metrics calculation
-├── utils/
-│   ├── calculations.js         # WPM, accuracy, XP, and difficulty algorithms
-│   └── storage.js              # localStorage persistence layer
-├── data/
-│   ├── sampleTexts.js          # Practice content by difficulty level
-│   └── keyboardLayouts.js      # QWERTY and Dvorak key mappings
-└── tests/
-    ├── calculations.test.js    # Unit tests for core algorithms
-    └── storage.test.js         # Unit tests for data persistence
+typing-coach/
+├── src/
+│   ├── components/     # UI Components
+│   │   ├── TypingArea.jsx
+│   │   ├── MetricsPanel.jsx
+│   │   ├── VisualKeyboard.jsx
+│   │   └── ... (10+ more)
+│   ├── hooks/          # Custom React hooks
+│   │   └── useTypingEngine.js
+│   ├── utils/          # Helper functions
+│   │   ├── calculations.js
+│   │   └── storage.js
+│   ├── data/           # Static data
+│   │   ├── levels.js
+│   │   └── sampleTexts.js
+│   ├── tests/          # Unit tests
+│   └── index.css       # Tailwind imports
+├── public/             # Static assets
+├── index.html          # Entry point
+├── vite.config.js      # Vite config
+├── tailwind.config.js  # Tailwind config
+├── package.json        # Dependencies & scripts
+└── README.md           # You're reading it! 👀
 ```
-
-### Key Algorithms
-
-**WPM Calculation**: `(correct_characters / 5) / minutes`
-**Accuracy**: `(correct_characters / total_characters) × 100`
-**XP Formula**: `WPM × (accuracy/100) × (time/60) + bonus_for_95%+`
-
-**Adaptive Difficulty**: Evaluates rolling average of last 3 sessions. Promotes user when both WPM and accuracy exceed thresholds for current level.
-
-### Performance Optimizations
-- **requestAnimationFrame**: Smooth caret animations
-- **Minimal DOM updates**: Efficient character rendering
-- **Event delegation**: Single keydown listener
-- **Memoized calculations**: Cached metric computations
-
-## 🎯 Usage Examples
-
-### Basic Typing Practice
-1. Select "Beginner" mode for home row practice
-2. Click in the typing area and start typing
-3. Watch real-time feedback as you type
-4. Complete the exercise to see detailed results
-
-### Advanced Features
-- **Custom Text**: Switch to any mode and paste your own content
-- **Keyboard Layouts**: Toggle between QWERTY/Dvorak in settings
-- **Data Export**: Use Settings → Export Data for backup
-- **Performance Tracking**: View History to analyze improvement trends
 
 ## 🧪 Testing
 
-The app includes comprehensive unit tests for core functionality:
-
 ```bash
-# Run all tests
-npm test
+# Run tests with coverage
+npm test -- --coverage
 
-# Run tests in watch mode
-npm run test:watch
-
-# Generate coverage report
-npm run test:coverage
+# Watch mode
+npm test -- --watch
 ```
 
-Test coverage includes:
-- WPM and accuracy calculations
-- Adaptive difficulty algorithm
-- Data persistence and retrieval
-- XP and badge systems
+Tests cover:
+- Typing calculations (`calculations.test.js`)
+- Local storage (`storage.test.js`)
+- Core engine logic
 
-## 🔧 Configuration
+## 🔧 Customization
 
-### Environment Variables
-No environment variables required - the app runs entirely client-side.
-
-### Customization
-- **Sample Texts**: Edit `src/data/sampleTexts.js` to add custom practice content
-- **Difficulty Thresholds**: Modify `difficultyThresholds` object to adjust progression
-- **Keyboard Layouts**: Add new layouts in `src/data/keyboardLayouts.js`
-- **Styling**: Customize appearance via Tailwind classes in components
-
-## 📱 Browser Support
-
-- **Modern Browsers**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
-- **Mobile**: iOS Safari 14+, Chrome Mobile 90+
-- **Features**: Requires JavaScript, localStorage, and modern CSS support
+- **Add Levels**: Edit `src/data/levels.js`
+- **New Texts**: Add to `src/data/sampleTexts.js`
+- **Keyboard Layouts**: Extend `src/data/keyboardLayouts.js`
+- **Themes**: Modify Tailwind config + `ThemeToggle.jsx`
+- **New Metrics**: Hook into `useTypingEngine.js`
 
 ## 🚀 Deployment
 
 ### Static Hosting (Recommended)
 ```bash
 npm run build
-# Deploy 'dist' folder to any static host (Netlify, Vercel, GitHub Pages)
+# Deploy 'dist/' folder to Netlify, Vercel, GitHub Pages, etc.
 ```
 
-### Docker
+### Docker (Optional)
 ```dockerfile
-FROM nginx:alpine
-COPY dist /usr/share/nginx/html
+FROM node:18-alpine
+COPY . .
+RUN npm ci --only=production
+RUN npm run build
 EXPOSE 80
+CMD npx serve dist
 ```
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make changes and add tests
-4. Run tests: `npm test`
-5. Submit a pull request
+1. Fork the repo
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push & PR to `main`
+
+Follow ESLint rules. Write tests for new features.
 
 ## 📄 License
 
-MIT License - feel free to use this project for learning or commercial purposes.
+MIT License - see [LICENSE](LICENSE) (create if needed)
 
-## 🎮 Demo Instructions
+## 🙌 Acknowledgments
 
-To record a demo GIF:
-1. Start the app with `npm run dev`
-2. Use screen recording software (OBS, QuickTime, etc.)
-3. Demonstrate: typing practice → real-time feedback → session completion → results modal
-4. Show adaptive difficulty by completing multiple sessions
-5. Export the recording as GIF using online converters
+Built with ❤️ using React ecosystem. Icons from Heroicons, data from typing standards.
 
 ---
 
-**Built with ❤️ using React, Vite, and Tailwind CSS**
+⭐ **Star on GitHub** | 🐛 **[Issues](https://github.com/user/typing-coach/issues)** | 📖 **Demo**: Run `npm run dev`
+
